@@ -16,7 +16,7 @@ const signToken = id =>{
     });
 }
 
-const createSendToken = (user, statusCode, res)=>{
+const createSendToken = (user, statusCode, req, res)=>{
     const token = signToken(user._id);
 
     // set the jwt to cookie
@@ -72,7 +72,7 @@ const signUp = catchAsync(async (req, res, next) =>{
     await new Email(newUser, url).sendWelcome();
 
 
-    createSendToken(newUser, 201, res);
+    createSendToken(newUser, 201, req, res);
 
     
 });
@@ -101,7 +101,7 @@ const login = catchAsync(async (req,res,next)=>{
 
     // 3) If everything ok, send token to client
     // 'user._id' is a payload
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
 });
 
 
@@ -310,7 +310,7 @@ const resetPassword = catchAsync(async (req, res, next)=>{
 
 
     // 4) Log the user in, send JWT
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
 
 });
 
@@ -335,7 +335,7 @@ const updatePassword = catchAsync(async(req, res, next)=>{
 
 
     // 4) Log user in, send JWT
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
 
 });
 
