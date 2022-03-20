@@ -21,6 +21,11 @@ const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
+
+// need to enable after deploy on 'Heroku'
+app.enable('trust proxy');
+
+
 // Set up pug
 // Render dynamic files
 app.set('view engine','pug');

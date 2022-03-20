@@ -27,7 +27,12 @@ const createSendToken = (user, statusCode, res)=>{
         httpOnly: true,
     }
 
-    if(process.env.NODE_ENV === 'production'){
+    // if(process.env.NODE_ENV === 'production'){
+    //     cookieOptions.secure = true;
+    // }
+
+    // Ensure the secure cookie after deployed on 'Heroku'
+    if(req.secure || req.headers['x-forwarded-proto'] === 'https'){
         cookieOptions.secure = true;
     }
 

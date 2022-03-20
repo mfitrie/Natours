@@ -33,7 +33,7 @@ mongoose.connect(DB, {
 // console.log(process.env);
 //// Node environement ////
 
-
+// 'Heroko' is mandatory to use process.env.PORT to listen the port
 const port = process.env.PORT || 3000;
 const server = app.listen(port, ()=>{
     console.log(`App running on port ${port}....`);
@@ -54,3 +54,10 @@ process.on('unhandledRejection', err=>{
 });
 
 
+// when the 'Heroku' use SIGTERM, it will shut down the server
+process.on('SIGTERM', ()=>{
+    console.log('SIGTERM RECEIVED, Shutting down gracefully');
+    server.close(()=>{
+        console.log('Process terminated');
+    });
+});
