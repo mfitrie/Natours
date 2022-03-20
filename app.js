@@ -8,6 +8,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 
 const AppError = require('./utils/appError');
@@ -96,6 +97,10 @@ app.use(hpp({
 //     console.log("Hello from the middleware");
 //     next();
 // });
+
+
+// it is going to compress all the text that send to client
+app.use(compression());
 
 
 
