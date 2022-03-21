@@ -3,6 +3,8 @@ import {login, logout} from './login';
 import {displayMap} from './mapbox';
 import { updateSettings } from './updateSettings';
 import {bookTour} from './stripe';
+import { showAlert } from './alert';
+
 
 
 // DOM ELEMENTS
@@ -99,4 +101,10 @@ if(bookBtn){
         const {tourId} = e.target.dataset;
         bookTour(tourId);
     });
+}
+
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if(alert){
+    showAlert('success', alertMessage, 20);
 }

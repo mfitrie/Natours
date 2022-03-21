@@ -5,6 +5,16 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 
+// alert after success the checkout
+const alerts = (req,res,next)=>{
+    const {alert} = req.query;
+    if(alert === 'booking'){
+        // NOTE- res.locals object persist through the entire request/response cycle over the pug
+        res.locals.alert = "Your booking was successful! Please check your email for a confirmation. If your booking doesn't show up here immediately, please come back later.";
+    }
+    next();
+}
+
 const getOverview = catchAsync(async(req,res, next)=>{
     // 1) Get tour data from collection
     const tours = await Tour.find();
@@ -104,4 +114,4 @@ const updateUserData = catchAsync(async(req, res, next)=>{
 });
 
 
-module.exports = {getOverview, getTour, getLoginForm, getAccount, getMyTours, updateUserData};
+module.exports = {getOverview, getTour, getLoginForm, getAccount, getMyTours, updateUserData, alerts};
