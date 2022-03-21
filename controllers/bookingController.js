@@ -114,6 +114,7 @@ const webhookCheckout = (req, res, next)=>{
 
 const createBooking = factory.createOne(Booking);
 const getBooking = factory.getOne(Booking);
+// NOTE - The dupplication booking handler is not yet implemented
 const getAllBookings = factory.getAll(Booking);
 const updateBooking = factory.updateOne(Booking);
 const deleteBooking = factory.deleteOne(Booking);
